@@ -2,8 +2,13 @@ public class PolynomialHasing {
     // the ratio to multiply each letter's code by, using 33 makes it more efficient, reduces number of collisions 
     private static final int r = 33;
     // the size of the hash table (array), used to calculating the compressed hash function that serves as what index to add at 
-    private static final int m = 32;
+    private static final int m = 197;
 
+
+    // alpha for multiply and divide compression, a > 0
+    private static final int a = 13;
+    // beta for multiply and divide compression, b >= 0. a mod b != 0
+    private static final int b = 59;
 
 
 
@@ -27,9 +32,13 @@ public class PolynomialHasing {
         return polynomialHashCode % m;
     }
 
+    public static int multiplyAndDivideCompression(int fk) {
+        return (a * fk + b) % m;
+    }
+
     public static void main(String[] args) {
         // Define the strings to be hashed
-        String[] strings = {"EAT", "TEA", "ATE"};
+        String[] strings = {"CAT", "BOG", "HOA", "CAP", "CMD"};
 
         // Calculate and display the hash code for each string
         for (String s : strings) {
@@ -38,6 +47,9 @@ public class PolynomialHasing {
             
             int compressedHashCode = calculateCompressedPolynomialHashCode(polynomialHashCode);
             System.out.println("Compressed hash code for " + s + " is: " + compressedHashCode);
+
+            int mdchc = multiplyAndDivideCompression(polynomialHashCode);
+            System.out.println("Multiply & Divide Compressed hash code for " + s + " is: " + mdchc);
 
             System.out.println();
         }
