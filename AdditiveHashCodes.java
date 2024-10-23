@@ -1,6 +1,6 @@
 public class AdditiveHashCodes {
     // the size of the hash table (array), used to calculating the compressed hash function that serves as what index to add at 
-    private static final int m = 43;
+    private static final int m = 31;
 
     // Method to calculate additive hash code of a string
     public static int calculateHashCode(String input) {
@@ -23,7 +23,7 @@ public class AdditiveHashCodes {
 
     public static void main(String[] args) {
         // Define the strings to be hashed
-        String[] strings = {"CAT", "BOG", "HOA", "CAP", "CMD"};
+        String[] strings = {"SOIL", "OILS"};
 
         // Calculate and display the hash code for each string
         for (String s : strings) {
